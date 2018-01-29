@@ -4,7 +4,7 @@ program sqrt
     use, intrinsic :: iso_c_binding
     implicit none
 
-    interface
+    abstract interface
         function initializer () bind ( c )
           use iso_c_binding
           integer ( c_int ) :: initializer
