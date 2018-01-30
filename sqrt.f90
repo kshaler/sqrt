@@ -4,7 +4,7 @@ program sqrt
     use, intrinsic :: iso_c_binding
     implicit none
 
-    abstract interface
+    interface
         function initializer () bind ( c )
           use iso_c_binding
           integer ( c_int ) :: initializer
@@ -21,7 +21,7 @@ program sqrt
 
     character(len=5) :: arg
     integer :: nargs
-
+        
     ! arguments for the c routines
     integer ( c_int ) :: errstat
     real ( c_double ) :: input
