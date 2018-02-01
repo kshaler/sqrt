@@ -11,10 +11,12 @@ before_install:
     # - brew install cmake # cmake is already installed in the default mac image
 
 before_script:
-    - mkdir build
-    - cd build
+    - mkdir build build_lib
+    - cd build_lib
+    - cmake ../lib
+    - make
+    - cd ../build
     - cmake ..
   
 script:
     - make 
-    # Run your build commands next
