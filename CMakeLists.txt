@@ -5,10 +5,14 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(CMAKE_MACOSX_RPATH 1)
 endif()
 
-add_library(newtonraphson SHARED ${CMAKE_CURRENT_LIST_DIR}/newtonraphson.c)
-set_target_properties(newtonraphson PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION 1)
+# if using the fortran library
+# set(PROJECT_LINK_LIBS libnewtonraphson_f90.dylib)
+# include_directories(build_lib)
 
-set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/sqrt.f90 ${CMAKE_CURRENT_LIST_DIR}/newtonraphson.c)
+# if using the c library
+set(PROJECT_LINK_LIBS libnewtonraphson_c.dylib)
 
+link_directories(build_lib)
+set(SOURCES src/sqrt.f90)
 add_executable(sqrt ${SOURCES})
-target_link_libraries(sqrt newtonraphson)
+target_link_libraries(sqrt ${PROJECT_LINK_LIBS})

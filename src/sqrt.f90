@@ -4,6 +4,17 @@ program sqrt
     use, intrinsic :: iso_c_binding
     implicit none
 
+    character(len=5) :: arg
+    integer :: nargs
+
+    ! ! arguments for the fortran routines
+    ! integer :: errstat
+    ! real :: input
+    ! real :: x0 = 10
+    ! integer :: iterations = 10
+    ! logical :: printIts = .FALSE.
+    ! real :: result
+
     interface
         function initializer () bind ( c )
           use iso_c_binding
@@ -19,9 +30,6 @@ program sqrt
         end function nr_sqrt
     end interface
 
-    character(len=5) :: arg
-    integer :: nargs
-        
     ! arguments for the c routines
     integer ( c_int ) :: errstat
     real ( c_double ) :: input
@@ -30,15 +38,15 @@ program sqrt
     logical ( c_bool ) :: printIts = .FALSE.
     real ( c_double ) :: result
 
+    ! initialize the c routines
+    ! errstat = initializer()
+
     ! read the input argument and convert to real
     nargs = command_argument_count()
     if (nargs.ne.1) then
       print *, "Usage: sqrt N where N is a real number"
       stop 1
     endif
-
-    ! initialize the c routines
-    errstat = initializer()
 
     call getarg(1, arg)
     read(arg,*) input
