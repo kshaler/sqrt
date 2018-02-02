@@ -6,13 +6,14 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif()
 
 # if using the fortran library
-# set(PROJECT_LINK_LIBS libnewtonraphson_f90.dylib)
-# include_directories(build_lib)
+set(PROJECT_LINK_LIBS libnewtonraphson_f90.dylib)
+include_directories(build_lib)
 
 # if using the c library
-set(PROJECT_LINK_LIBS libnewtonraphson_c.dylib)
+# set(PROJECT_LINK_LIBS libnewtonraphson_c.dylib)
+# include_directories(lib/include)
 
 link_directories(build_lib)
-set(SOURCES src/sqrt.f90)
+set(SOURCES src/sqrt.c)
 add_executable(sqrt ${SOURCES})
 target_link_libraries(sqrt ${PROJECT_LINK_LIBS})
