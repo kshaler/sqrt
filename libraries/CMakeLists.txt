@@ -7,11 +7,11 @@ endif()
 
 # compile the c version of the newton raphson library
 include_directories(include)
-set(SOURCES newtonraphson.c)
+set(SOURCES src/newtonraphson.c)
 add_library(newtonraphson_c SHARED ${SOURCES})
 set_target_properties(newtonraphson_c PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION 1)
 
 # compile the f90 version of the newton raphson library
-set(SOURCES newtonraphson.f90)
-add_library(newtonraphson_f90 SHARED ${SOURCES})
+set(SOURCES src/newtonraphson.f90)
+add_library(newtonraphson_f90 STATIC ${SOURCES})
 set_target_properties(newtonraphson_f90 PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION 1)

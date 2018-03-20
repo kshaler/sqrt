@@ -6,7 +6,6 @@
 #define _ISOC99_SOURCE 1
 #include <math.h>
 
-int initializer();
 bool isEven(int n);
 int int_sq(int n);
 int int_2x(int n);

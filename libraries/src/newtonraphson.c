@@ -1,15 +1,6 @@
 
 #include "newtonraphson_c.h"
 
-int initializer()
-{
-  // open a file for logging
-  FILE *fp;
-  fp = fopen("newtonraphson.log", "w");
-  fprintf(fp, "Testing...\n");
-  return 1;
-}
-
 bool isEven(int n)
 {
   return n % 2 == 0;

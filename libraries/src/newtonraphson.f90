@@ -1,17 +1,24 @@
 module newtonraphson
+use iso_c_binding
 implicit none
 
 private :: isEven, isInteger
-public :: nr_sqrt, int_2x, int_sq
+public :: nr_sqrt, int_2x, int_sq, testme
 
 contains
 
-real function nr_sqrt(n, x0, iterations, printIts)
-  real, intent(in) :: n, x0
-  integer, intent(in) :: iterations
-  logical, intent(in) :: printIts
+subroutine testme(in, out) bind(c)
+  integer (c_int), intent(in) :: in
+  integer (c_int), intent(out) :: out
+  out = in + 1
+end subroutine
+
+real( c_float ) function nr_sqrt(n, x0, iterations, printIts) bind(c)
+  real( c_float ), intent(in) :: n, x0
+  integer( c_int ), intent(in) :: iterations
+  logical( c_bool ), intent(in) :: printIts
   integer :: i
-  real :: xm1
+  real( c_float ) :: xm1
 
   do i = 1, iterations
     if (i == 1) then
@@ -35,8 +42,8 @@ real function nr_sqrt(n, x0, iterations, printIts)
   return
 end function
 
-integer function int_2x(n)
-  integer, intent(in) :: n
+integer(c_int) function int_2x(n) bind(c)
+  integer(c_int), intent(in) :: n
   int_2x = ishft(n, 1)
 end function
 
